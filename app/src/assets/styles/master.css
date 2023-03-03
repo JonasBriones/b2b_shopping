@@ -1,0 +1,69 @@
+.MuiTextField-root,
+.MuiInputBase-root,
+.MuiOutlinedInput,
+.MuiOutlinedInput-root {
+    background-color: #FCFDFD;
+    border-radius: 10px !important;
+}
+
+.MuiCard-root {
+    border-radius: 10px !important;
+}
+
+.MuiLoadingButton-root {
+    background-color: #FFF;
+}
+
+.textAreaContacto {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.tablas-header {
+    color: #595959 !important;
+}
+
+.MuiListItem-root.Mui-selected {
+    background-color: #4A50AA !important;
+    border-radius: 8px;
+}
+
+.swal2-container {
+    z-index: 1101;
+}
+
+::selection {
+    color: white;
+    background-color: #5d64d5;
+}
+.parpadea {
+  
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 1.2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+  
+  @-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+  
+  @-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+  }
+  
+  @keyframes parpadeo {  
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }

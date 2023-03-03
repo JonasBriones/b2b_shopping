@@ -19,6 +19,8 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/lab": "^5.0.0-alpha.121",
     "@mui/material": "latest",
     "@remix-run/node": "latest",
     "@remix-run/react": "latest",
@@ -26,7 +28,8 @@
     "@remix-run/server-runtime": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "remix": "latest"
+    "remix": "latest",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

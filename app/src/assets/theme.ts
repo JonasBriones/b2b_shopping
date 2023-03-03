@@ -5,7 +5,9 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: '#556cd6',
+			main: "#5d64d5",
+			light: "#FCFDFD",
+			dark: "#464BA0",
 		},
 		secondary: {
 			main: '#19857b',
@@ -13,6 +15,13 @@ const theme = createTheme({
 		error: {
 			main: red.A400,
 		},
+	},
+	typography: {
+		fontFamily: ["Noto Sans", "sans-serif"].join(","),
+		fontSize: 14,
+		fontWeightLight: 300,
+		fontWeightRegular: 400,
+		fontWeightMedium: 500,
 	},
 });
 
