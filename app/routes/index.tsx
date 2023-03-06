@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { Form, Link as LinkRoute } from '@remix-run/react';
+import { json } from "@remix-run/node";
+import { Form, Link as LinkRoute, useLoaderData } from '@remix-run/react';
 import * as yup from 'yup';
 
 import { Box } from '@mui/material';
@@ -20,8 +21,14 @@ import VisibilityOffOutlined from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
 
 import LoadingButton from '@mui/lab/LoadingButton';
+import Layout from '../src/components/ui/layouts/layout';
+
+export async function loader() {
+	return json({ urlApiBackend: process.env.API_BACKEND_SHOPPING });
+}
 
 const Index: React.FC = () => {
+	const data = useLoaderData<typeof loader>();
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [passType, setpassType] = useState('password');
 
@@ -38,7 +45,9 @@ const Index: React.FC = () => {
 		}
 	};
 
+
 	return (
+		<Layout>
 		<Form>
 			<Box component="div" sx={{ maxWidth: 450, p: 3 }}>
 				<Typography color="text.secondary" variant="h3" mb={1}>
@@ -140,10 +149,12 @@ const Index: React.FC = () => {
 				</Divider>
 
 				<Button
+					href={`${data.urlApiBackend}/oauth2/authorization/cencosud`}	
 					fullWidth
 					variant="outlined"
 					type="button"
 					sx={{ fontSize: 16 }}
+					color='light'
 				>
 					Shopping Cencosud
 				</Button>
@@ -151,6 +162,7 @@ const Index: React.FC = () => {
 				<LinkRoute to="/privado/externo/local"> test </LinkRoute>
 			</Box>
 		</Form>
+		</Layout>
 	);
 };
 

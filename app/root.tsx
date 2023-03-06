@@ -1,18 +1,26 @@
 import { withEmotionCache } from '@emotion/react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
+import type { LinksFunction } from "@remix-run/node";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from '@remix-run/react';
 import * as React from 'react';
+
 import theme from './src/styles/theme';
 
 import Layout from './src/components/ui/layouts/layout';
 import ClientStyleContext from './src/context/ClientStyleContext';
 
+import globalStylesUrl from './src/styles/master.css';
 
 interface DocumentProps {
   children: React.ReactNode;
   title?: string;
 }
 
+export const links: LinksFunction = () => {
+  return [
+    { rel: "stylesheet", href: globalStylesUrl }
+  ];
+};
 const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCache) => {
   const clientStyleData = React.useContext(ClientStyleContext);
 
@@ -62,9 +70,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
 export default function App() {
   return (
     <Document>
-      <Layout>
         <Outlet />
-      </Layout>
     </Document>
   );
 }
