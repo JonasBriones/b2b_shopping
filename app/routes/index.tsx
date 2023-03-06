@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 
-import { Form, Link as LinkRoute } from "@remix-run/react";
+import { Form, Link as LinkRoute } from '@remix-run/react';
 import * as yup from 'yup';
 
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
@@ -20,135 +19,139 @@ import StartOutlined from '@mui/icons-material/StartOutlined';
 import VisibilityOffOutlined from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
 
-
 import LoadingButton from '@mui/lab/LoadingButton';
 
-
 const Index: React.FC = () => {
-	const [isSubmitting, setIsSubmitting] = useState(false)
-  	const [passType, setpassType] = useState('password');
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [passType, setpassType] = useState('password');
 
-  	const validationSchema = yup.object({
-    	email: yup
-      		.string()
-      		.email()
-      		.required(),
-    	password: yup
-      		.string()
-      		.required(),
-  	});
+	const validationSchema = yup.object({
+		email: yup.string().email().required(),
+		password: yup.string().required(),
+	});
 
 	const toogleViewPassword = () => {
 		if (passType === 'password') {
-		setpassType('text');
+			setpassType('text');
 		} else {
-		setpassType('password');
+			setpassType('password');
 		}
 	};
 
+	return (
+		<Form>
+			<Box component="div" sx={{ maxWidth: 450, p: 3 }}>
+				<Typography color="text.secondary" variant="h3" mb={1}>
+					Bienvenido
+				</Typography>
+				<Typography color="text.secondary" variant="h5" mb={4}>
+					Ingresa tus credenciales{' '}
+				</Typography>
 
+				{/* EMAIL */}
+				<InputLabel color="secondary" htmlFor="username">
+					<Typography variant="caption" color="text.secondary">
+						Correo electrónico
+					</Typography>
+				</InputLabel>
 
-  	return (
-    <Form>
-      <Box component='div' sx={{ maxWidth: 450, p: 3 }}>
-        <Typography color='text.secondary' variant='h3' mb={1}>Bienvenido</Typography>
-        <Typography color='text.secondary' variant='h5' mb={4}>Ingresa tus credenciales </Typography>
+				<FormControl required fullWidth sx={{ pb: 2 }}>
+					<TextField
+						inputProps={{ tabIndex: 0 }}
+						fullWidth
+						autoComplete="off"
+						placeholder="Correo electrónico"
+						name="email"
+						type="email"
+						size="small"
+						onKeyDown={(ev) => {
+							if (ev.key === 'Tab') {
+								// passRef.current.focus()
+							}
+						}}
+					/>
+				</FormControl>
 
-        {/* EMAIL */}
-        <InputLabel color='secondary' htmlFor='username'>
-          <Typography variant='caption' color='text.secondary'>Correo electrónico</Typography>
-        </InputLabel>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+					<Box>
+						<InputLabel color="secondary" htmlFor="contraseña">
+							<Typography variant="caption" color="text.secondary">
+								Contraseña
+							</Typography>
+						</InputLabel>
+					</Box>
+					<Box>
+						<InputLabel color="secondary" htmlFor="forgot">
+							<Link
+								tabIndex={-1}
+								component={LinkRoute}
+								to="/auth/recuperar_password"
+								variant="caption"
+								color="text.secondary"
+							>
+								Olvidé mi contraseña
+							</Link>
+						</InputLabel>
+					</Box>
+				</Box>
+				<FormControl required fullWidth sx={{ mb: 3 }}>
+					<OutlinedInput
+						placeholder="Contraseña"
+						autoComplete="current-password"
+						name="password"
+						type={passType}
+						size="small"
+						endAdornment={
+							<InputAdornment position="end">
+								<IconButton onClick={toogleViewPassword} tabIndex={-1}>
+									{passType === 'password' ? (
+										<VisibilityOffOutlined />
+									) : (
+										<VisibilityOutlined />
+									)}
+								</IconButton>
+							</InputAdornment>
+						}
+					/>
+				</FormControl>
 
-        <FormControl required fullWidth sx={{ pb: 2 }}>
-          <TextField
-            inputProps={{tabIndex: 0}}
-            fullWidth
-            autoComplete='off'
-            placeholder='Correo electrónico'
-            name='email'
-            type='email'
-            size='small'
-            onKeyDown={(ev) => {
-              if (ev.key === 'Tab') {
-                //passRef.current.focus()
-              }
-            }}
-          />
-        </FormControl>
+				<LoadingButton
+					fullWidth
+					type="submit"
+					color="primary"
+					size="small"
+					sx={{
+						mb: 3,
+						fontSize: 16,
+						'&.MuiLoadingButton-root.Mui-disabled': {
+							color: 'rgba(239, 240, 251, 0.5)',
+						},
+					}}
+					variant="contained"
+					loading={isSubmitting}
+					startIcon={<StartOutlined />}
+					loadingPosition="start"
+				>
+					{isSubmitting ? 'Enviando...' : 'Ingresar'}
+				</LoadingButton>
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box>
-            <InputLabel color='secondary' htmlFor='contraseña'>
-              <Typography variant='caption' color='text.secondary'>Contraseña</Typography>
-            </InputLabel>
-          </Box>
-          <Box>
-            <InputLabel color='secondary' htmlFor='forgot'>
-              <Link tabIndex={-1} component={LinkRoute} to='/auth/recuperar_password' variant='caption' color='text.secondary'>
-                Olvidé mi contraseña
-              </Link>
-            </InputLabel>
-          </Box>
-        </Box>
-        <FormControl required fullWidth sx={{ mb: 3 }}>
-          <OutlinedInput
-            placeholder='Contraseña'
-            autoComplete='current-password'
-            name='password'
-            type={passType}
-            size='small'
-            endAdornment={
-              <InputAdornment position='end' >
-                <IconButton  onClick={toogleViewPassword} tabIndex={-1}>
-                  {passType === 'password' ? (
-                    <VisibilityOffOutlined />
-                  ) : (
-                    <VisibilityOutlined />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+				<Divider sx={{ mb: 3, mt: 4 }}>
+					<Typography color="text.secondary">O inicia con</Typography>
+				</Divider>
 
+				<Button
+					fullWidth
+					variant="outlined"
+					type="button"
+					sx={{ fontSize: 16 }}
+				>
+					Shopping Cencosud
+				</Button>
 
-        <LoadingButton
-          fullWidth
-          type='submit'
-          color='primary'
-          size='small'
-          sx={{
-            mb: 3, fontSize: 16,
-            '&.MuiLoadingButton-root.Mui-disabled': {
-              color: 'rgba(239, 240, 251, 0.5)'
-            }
-          }}
-          variant='contained'
-          loading={isSubmitting}
-          startIcon={<StartOutlined />}
-          loadingPosition='start'
-        >
-          {isSubmitting ? 'Enviando...' : 'Ingresar'}
-        </LoadingButton>
-
-
-        <Divider sx={{ mb: 3, mt: 4 }}>
-          <Typography color='text.secondary'>O inicia con</Typography>
-        </Divider>
-
-        <Button
-          fullWidth
-          variant='outlined'
-          type='button'
-          sx={{ fontSize: 16 }}
-        >
-          Shopping Cencosud
-        </Button>
-
-		  <LinkRoute to='/privado/externo/local'> test </LinkRoute>
-      </Box>
-    </Form>
-  )
-}
+				<LinkRoute to="/privado/externo/local"> test </LinkRoute>
+			</Box>
+		</Form>
+	);
+};
 
 export default Index;

@@ -1,13 +1,13 @@
+import { createTheme } from '@mui/material';
 import { red } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
 
 // Create a theme instance.
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: "#5d64d5",
-			light: "#FCFDFD",
-			dark: "#464BA0",
+			main: '#5d64d5',
+			light: '#FCFDFD',
+			dark: '#464BA0',
 		},
 		secondary: {
 			main: '#19857b',
@@ -17,7 +17,7 @@ const theme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: ["Noto Sans", "sans-serif"].join(","),
+		fontFamily: ['Noto Sans', 'sans-serif'].join(','),
 		fontSize: 14,
 		fontWeightLight: 300,
 		fontWeightRegular: 400,

@@ -1,18 +1,11 @@
 import { withEmotionCache } from '@emotion/react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useCatch
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from '@remix-run/react';
 import * as React from 'react';
-import ClientStyleContext from './src/assets/cache/ClientStyleContext';
-import theme from './src/assets/theme';
-import { Layout } from './src/components/ui/layouts/layout';
+import theme from './src/styles/theme';
+
+import Layout from './src/components/ui/layouts/layout';
+import ClientStyleContext from './src/context/ClientStyleContext';
 
 
 interface DocumentProps {
@@ -48,6 +41,10 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
         {title ? <title>{title}</title> : null}
         <Meta />
         <Links />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
         <meta name="emotion-insertion-point" content="emotion-insertion-point" />
       </head>
       <body>
