@@ -1,19 +1,17 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node';
-import { authApi } from './api.server';
 
 type LoginForm = {
-  username: string;
-  password: string;
+	username: string;
+	password: string;
 };
 
-export async function login({username, password }: LoginForm){
-
-  const user = authApi.
-
+export async function login({ username, password }: LoginForm) {
+	const user = '';
+	return user;
 }
 
 function getUserSession(request: Request) {
-  return storage.getSession(request.headers.get("Cookie"));
+	return storage.getSession(request.headers.get('Cookie'));
 }
 
 const sessionSecret = process.env.VITE_SESSION_SECRET;
@@ -38,12 +36,11 @@ const storage = createCookieSessionStorage({
 
 export async function createUserSession() {}
 
-
 export async function logout(request: Request) {
-  const session = await getUserSession(request);
-  return redirect("/login", {
-    headers: {
-      "Set-Cookie": await storage.destroySession(session),
-    },
-  });
+	const session = await getUserSession(request);
+	return redirect('/login', {
+		headers: {
+			'Set-Cookie': await storage.destroySession(session),
+		},
+	});
 }

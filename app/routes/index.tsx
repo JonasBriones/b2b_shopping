@@ -29,13 +29,15 @@ export async function loader() {
 
 const Index: React.FC = () => {
 	const data = useLoaderData<typeof loader>();
-	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isSubmitting] = useState(false);
 	const [passType, setpassType] = useState('password');
 
 	const validationSchema = yup.object({
 		email: yup.string().email().required(),
 		password: yup.string().required(),
 	});
+
+	console.log( validationSchema );
 
 	const toogleViewPassword = () => {
 		if (passType === 'password') {
