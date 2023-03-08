@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 					minWidth: '100vw',
 					backgroundPosition: 'center',
 					backgroundRepeat: 'no-repeat',
-					backgroundSize: 'cover'
+					backgroundSize: 'cover',
 				}}
 			>
 				<Box
