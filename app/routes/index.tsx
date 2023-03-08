@@ -37,7 +37,7 @@ const Index: React.FC = () => {
 		password: yup.string().required(),
 	});
 
-	console.log( validationSchema );
+	console.log(validationSchema);
 
 	const toogleViewPassword = () => {
 		if (passType === 'password') {

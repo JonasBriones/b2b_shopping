@@ -34,7 +34,9 @@ const storage = createCookieSessionStorage({
 	},
 });
 
-export async function createUserSession() {}
+export async function createUserSession() {
+	return null;
+}
 
 export async function logout(request: Request) {
 	const session = await getUserSession(request);
